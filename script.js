@@ -1,8 +1,6 @@
 const form = document.getElementById('meuForm');
 const lista = document.getElementById('listaDados');
 
-// COLOQUE AQUI A SUA URL DO GOOGLE APPS SCRIPT
-const URL_PLANILHA = "16vGNkuLVrTdkYQXa8CPDcZs-2MTQW3kOR-x-QCjdPVI";
 
 document.addEventListener('DOMContentLoaded', exibirDados);
 
@@ -16,7 +14,6 @@ form.addEventListener('submit', (e) => {
         bad: document.getElementById('bad').value
     };
 
-    // --- ENVIAR PARA PLANILHA ---
     fetch(URL_PLANILHA, {
         method: 'POST',
         mode: 'no-cors',
@@ -26,7 +23,6 @@ form.addEventListener('submit', (e) => {
     .then(() => console.log("Enviado para planilha!"))
     .catch(err => console.error("Erro planilha:", err));
 
-    // --- SALVAR LOCAL ---
     const bancoLocal = JSON.parse(localStorage.getItem('meuBancoDB')) || [];
     bancoLocal.push(registro);
     localStorage.setItem('meuBancoDB', JSON.stringify(bancoLocal));
